@@ -1,0 +1,73 @@
+"""
+Project: Chat with PDF / Documents using Python
+Implement a Python project called Chat with PDF using Retrieval-Augmented Generation (RAG).
+
+Goal:
+- Allow users to upload a PDF file.
+- Split the document into text chunks.
+- Generate embeddings for each chunk using a sentence transformer model.
+- Store embeddings in a Qdrant vector database.
+- Take user questions as input, search Qdrant for the most relevant chunks, and feed them into a locally running Llama model.
+- Provide answers based on the context retrieved.
+
+Use Cases:
+- Summarizing research papers.
+- Answering questions from contracts/legal docs.
+- Assisting with study notes.
+
+Steps for Copilot to Implement:
+1. Dependencies:
+   - Install: PyPDF2 (or pypdf), sentence-transformers, qdrant-client, llama-cpp-python (for local Llama).
+   - Use FastAPI or Streamlit for a simple web UI.
+
+2. PDF Handling:
+   - Write a function to extract text from uploaded PDF.
+   - Split text into overlapping chunks (e.g., 500–1000 tokens with 50 overlap).
+   - Store chunks in memory as a list.
+
+3. Embeddings & Qdrant:
+   - Load a sentence-transformers embedding model (e.g., "all-MiniLM-L6-v2").
+   - Generate embeddings for each chunk.
+   - Connect to Qdrant (local or cloud instance).
+   - Create a collection with proper vector size and cosine similarity.
+   - Upload all chunk embeddings + metadata (page number, chunk text).
+
+4. Querying:
+   - Function to handle user questions.
+   - Embed the query.
+   - Query Qdrant for top-k similar chunks.
+   - Retrieve matching text chunks.
+
+5. Llama Integration:
+   - Load a local Llama model using llama-cpp-python.
+   - Create a prompt template that includes:
+     - User question.
+     - Retrieved context from Qdrant.
+   - Generate an answer.
+
+6. Interface:
+   - (Option A) Simple command-line interface:
+       - Upload PDF → Process → Ask questions in loop.
+   - (Option B) Streamlit/FastAPI web app:
+       - Upload PDF via file uploader.
+       - Input box for questions.
+       - Display answer + highlighted context.
+
+7. Additional Features (optional):
+   - Cache processed PDFs so re-uploading doesn’t re-embed everything.
+   - Add PDF name + metadata in Qdrant for multi-document support.
+   - Summarize entire PDF with a single button.
+   - Export Q&A or summary to Markdown/Docx.
+
+Deliverables:
+- A single Python project structured with modules:
+    - pdf_utils.py → extract & chunk
+    - embeddings.py → generate embeddings
+    - db_utils.py → Qdrant operations
+    - llm.py → query Llama
+    - app.py → CLI or Web App
+- Add requirements.txt with all dependencies.
+- Include docstrings, comments, and error handling.
+
+Now, Copilot: Implement this project step by step with clean, modular, and production-ready Python code.
+"""
