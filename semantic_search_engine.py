@@ -1,3 +1,10 @@
+'''
+Semantic Search Engine using Qdrant and Sentence Transformers
+
+pip install sentence-transformers qdrant-client
+docker run -p 6333:6333 qdrant/qdrant
+'''
+
 import numpy as np
 from typing import List
 from sentence_transformers import SentenceTransformer
